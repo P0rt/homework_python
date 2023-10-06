@@ -3,19 +3,6 @@ import datetime as dt
 now = dt.datetime.now()
 date_format = '%d.%m.%Y'
 
-
-class Record:
-    def __init__(self, amount, comment, date=None):
-        self.amount = amount
-        self.comment = comment
-        if date is None:
-            # Указываем сегодняшнюю дату по-умолчанию
-            self.date = now.date()
-        else:
-            # Приводим полученную дату к виду date_format
-            self.date = dt.datetime.strptime(date, date_format).date()
-
-
 class Calculator():
     def __init__(self, limit):
         self.limit = limit
