@@ -16,11 +16,16 @@ class Record:
             self.date = dt.datetime.strptime(date, date_format).date()
 
 
-class Calculator():
+class CashCalculator(Calculator):
+    RATES = {
+        'USD': 73.20,
+        'EURO': 86.64
+    }
+
     def __init__(self, limit):
         self.limit = limit
-        self.week_later = dt.date.today() - dt.timedelta(days=7)
         self.records = []
+
 
     def add_record(self, record):
         self.records.append(record)
