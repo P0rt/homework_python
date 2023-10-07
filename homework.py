@@ -3,11 +3,28 @@ import datetime as dt
 now = dt.datetime.now()
 date_format = '%d.%m.%Y'
 
-class Calculator():
+class Record:
+    def __init__(self, amount, comment, date=None):
+        self.amount = amount
+        self.comment = comment
+        if date is None:
+            # Указываем сегодняшнюю дату по-умолчанию
+            self.date = now.date()
+        else:
+            # Приводим полученную дату к виду date_format
+            self.date = dt.datetime.strptime(date, date_format).date()
+
+
+class CashCalculator(Calculator):
+    RATES = {
+        'USD': 73.20,
+        'EURO': 86.64
+    }
+    
     def __init__(self, limit):
         self.limit = limit
-        self.week_later = dt.date.today() - dt.timedelta(days=7)
         self.records = []
+
 
     def add_record(self, record):
         self.records.append(record)
